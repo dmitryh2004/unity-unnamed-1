@@ -32,7 +32,7 @@ public abstract class BaseButton : Interactable
     {
         bool old_activated = activated;
         activated = repressable ? !activated : true;
-        if (old_activated != activated) //если состояние кнопки изменилось
+        if (old_activated != activated) //РµСЃР»Рё СЃРѕСЃС‚РѕСЏРЅРёРµ РєРЅРѕРїРєРё РёР·РјРµРЅРёР»РѕСЃСЊ
         {
             buttonAnim.SetBool("pressed", activated);
             if (activated)
@@ -45,7 +45,7 @@ public abstract class BaseButton : Interactable
             }
         }
 
-        //обновить состояние связанных кнопок
+        //РѕР±РЅРѕРІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ СЃРІСЏР·Р°РЅРЅС‹С… РєРЅРѕРїРѕРє
         foreach (Transform linkedButton in linkedButtons)
         {
             linkedButton.GetComponent<BaseButton>().setActivated(activated);

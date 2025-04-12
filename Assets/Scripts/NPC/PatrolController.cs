@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class PatrolController : MonoBehaviour
 {
-    [SerializeField] float changeWaypointDelay = 0.25f; //задержка выбора следующей точки
+    [SerializeField] float changeWaypointDelay = 0.25f; //Р·Р°РґРµСЂР¶РєР° РІС‹Р±РѕСЂР° СЃР»РµРґСѓСЋС‰РµР№ С‚РѕС‡РєРё
     [SerializeField] List<Transform> waypoints;
     [SerializeField] int startFrom = 0;
     NavMeshAgent agent;

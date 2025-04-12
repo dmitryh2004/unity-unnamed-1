@@ -8,24 +8,26 @@ public class PlayerHealth : MonoBehaviour
     //public AudioSource damageAudioSource;
     //public AudioSource deathAudioSource;
     public Image interfaceBorderImage;
-    public int maxHealth = 100; // Максимальное количество здоровья
-    private int currentHealth; // Текущее количество здоровья
+    public int maxHealth = 100; // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РґРѕСЂРѕРІСЊСЏ
+    private int currentHealth; // РўРµРєСѓС‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РґРѕСЂРѕРІСЊСЏ
     public GameObject UICanvas;
-    public GameObject gameOverCanvas; // Панель проигрыша
-    public Button restartButton; // Кнопка перезапуска
-    public Button loadCheckpointButton; // Кнопка загрузки чекпоинта
+    public GameObject gameOverCanvas; // РџР°РЅРµР»СЊ РїСЂРѕРёРіСЂС‹С€Р°
+    public Button restartButton; // РљРЅРѕРїРєР° РїРµСЂРµР·Р°РїСѓСЃРєР°
+    public Button loadCheckpointButton; // РљРЅРѕРїРєР° Р·Р°РіСЂСѓР·РєРё С‡РµРєРїРѕРёРЅС‚Р°
+    public Button mainMenuButton; // РљРЅРѕРїРєР° РІС‹С…РѕРґР° РІ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ
     PlayerAudioPlayer audioPlayer;
 
     void Start()
     {
-        // Устанавливаем текущее здоровье равным максимальному при старте игры
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚РµРєСѓС‰РµРµ Р·РґРѕСЂРѕРІСЊРµ СЂР°РІРЅС‹Рј РјР°РєСЃРёРјР°Р»СЊРЅРѕРјСѓ РїСЂРё СЃС‚Р°СЂС‚Рµ РёРіСЂС‹
         currentHealth = maxHealth;
         gameOverCanvas.SetActive(false);
         restartButton.onClick.AddListener(RestartButtonOnClick);
         loadCheckpointButton.onClick.AddListener(LoadLastCheckpointOnClick);
+        mainMenuButton.onClick.AddListener(MainMenuOnClick);
         audioPlayer = GetComponent<PlayerAudioPlayer>();
 
-        // Обновляем элемент интерфейса
+        // РћР±РЅРѕРІР»СЏРµРј СЌР»РµРјРµРЅС‚ РёРЅС‚РµСЂС„РµР№СЃР°
         UpdateInterfaceBorder();
     }
 
@@ -33,32 +35,32 @@ public class PlayerHealth : MonoBehaviour
     {
         if (playSound)
             audioPlayer.PlayTakeDamageSound();
-        // Уменьшаем текущее здоровье на величину урона
+        // РЈРјРµРЅСЊС€Р°РµРј С‚РµРєСѓС‰РµРµ Р·РґРѕСЂРѕРІСЊРµ РЅР° РІРµР»РёС‡РёРЅСѓ СѓСЂРѕРЅР°
         currentHealth -= damage;
 
-        // Проверяем, если здоровье меньше или равно 0
+        // РџСЂРѕРІРµСЂСЏРµРј, РµСЃР»Рё Р·РґРѕСЂРѕРІСЊРµ РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРЅРѕ 0
         if (currentHealth <= 0)
         {
-            currentHealth = 0; // Убедимся, что здоровье не уходит в отрицательные значения
-            GameOver(dealer); // Вызываем метод смерти игрока
+            currentHealth = 0; // РЈР±РµРґРёРјСЃСЏ, С‡С‚Рѕ Р·РґРѕСЂРѕРІСЊРµ РЅРµ СѓС…РѕРґРёС‚ РІ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
+            GameOver(dealer); // Р’С‹Р·С‹РІР°РµРј РјРµС‚РѕРґ СЃРјРµСЂС‚Рё РёРіСЂРѕРєР°
         }
 
-        // Обновляем элемент интерфейса
+        // РћР±РЅРѕРІР»СЏРµРј СЌР»РµРјРµРЅС‚ РёРЅС‚РµСЂС„РµР№СЃР°
         UpdateInterfaceBorder();
     }
 
     public void Heal(int amount)
     {
-        // Увеличиваем здоровье игрока на указанное значение
+        // РЈРІРµР»РёС‡РёРІР°РµРј Р·РґРѕСЂРѕРІСЊРµ РёРіСЂРѕРєР° РЅР° СѓРєР°Р·Р°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
         currentHealth += amount;
 
-        // Убедимся, что здоровье не превышает максимум
+        // РЈР±РµРґРёРјСЃСЏ, С‡С‚Рѕ Р·РґРѕСЂРѕРІСЊРµ РЅРµ РїСЂРµРІС‹С€Р°РµС‚ РјР°РєСЃРёРјСѓРј
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
 
-        // Обновляем элемент интерфейса
+        // РћР±РЅРѕРІР»СЏРµРј СЌР»РµРјРµРЅС‚ РёРЅС‚РµСЂС„РµР№СЃР°
         UpdateInterfaceBorder();
     }
 
@@ -71,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
 
     public int GetCurrentHealth()
     {
-        // Метод для получения текущего здоровья (например, для отображения на UI)
+        // РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С‚РµРєСѓС‰РµРіРѕ Р·РґРѕСЂРѕРІСЊСЏ (РЅР°РїСЂРёРјРµСЂ, РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° UI)
         return currentHealth;
     }
 
@@ -94,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
         }
         UICanvas.SetActive(false);
         gameOverCanvas.SetActive(true);
-        Time.timeScale = 0; // Остановка времени для паузы
+        Time.timeScale = 0; // РћСЃС‚Р°РЅРѕРІРєР° РІСЂРµРјРµРЅРё РґР»СЏ РїР°СѓР·С‹
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -110,17 +112,22 @@ public class PlayerHealth : MonoBehaviour
 
     private void RestartGame(bool useSave = false)
     {
-        Time.timeScale = 1; // Восстановление времени
+        Time.timeScale = 1; // Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РІСЂРµРјРµРЅРё
         gameOverCanvas.SetActive(false);
-        currentHealth = maxHealth; // Восстановление HP
+        currentHealth = maxHealth; // Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ HP
 
-        if (!useSave) // удаление сохранения, если игрок выбрал начать сначала
+        if (!useSave) // СѓРґР°Р»РµРЅРёРµ СЃРѕС…СЂР°РЅРµРЅРёСЏ, РµСЃР»Рё РёРіСЂРѕРє РІС‹Р±СЂР°Р» РЅР°С‡Р°С‚СЊ СЃРЅР°С‡Р°Р»Р°
         {
             string path = Application.persistentDataPath + "/game_data.json";
             if (File.Exists(path)) File.Delete(path);
         }
 
-        // Перезапуск сцены
+        // РџРµСЂРµР·Р°РїСѓСЃРє СЃС†РµРЅС‹
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void MainMenuOnClick()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

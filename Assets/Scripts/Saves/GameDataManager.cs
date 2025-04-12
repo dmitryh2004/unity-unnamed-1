@@ -45,7 +45,7 @@ public class ButtonState : ObjectState
     public string objectName;
 }
 
-// Класс для хранения данных игры
+// РљР»Р°СЃСЃ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РґР°РЅРЅС‹С… РёРіСЂС‹
 [System.Serializable]
 public class GameData
 {
@@ -72,7 +72,7 @@ public class GameDataManager : MonoBehaviour
     public List<GameObject> objectsToSave = new List<GameObject>();
     private const string SAVE_FILE_NAME = "/game_data.json";
 
-    // Сохранение данных
+    // РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С…
     public void SaveGameData(int floorNumber, int playerHealth, int playerAmmo)
     {
         GameData data = new GameData(floorNumber, playerHealth, playerAmmo);
@@ -84,7 +84,7 @@ public class GameDataManager : MonoBehaviour
             ChaseController chaseController;
             NPCHealth npc;
             Pickable pickable;
-            //если объект - кнопка
+            //РµСЃР»Рё РѕР±СЉРµРєС‚ - РєРЅРѕРїРєР°
             if (obj.TryGetComponent<BaseButton>(out baseButtonComponent))
             {
                 ButtonState buttonState = new ButtonState();
@@ -92,7 +92,7 @@ public class GameDataManager : MonoBehaviour
                 buttonState.state = baseButtonComponent.isActivated();
                 data.buttons.Add(buttonState);
             }
-            //если объект - лифт с ловушкой
+            //РµСЃР»Рё РѕР±СЉРµРєС‚ - Р»РёС„С‚ СЃ Р»РѕРІСѓС€РєРѕР№
             else if (obj.TryGetComponent<Elevator1Controller>(out elevator1Controller))
             {
                 Elevator1State elevator1State = new Elevator1State();
@@ -102,7 +102,7 @@ public class GameDataManager : MonoBehaviour
                 elevator1State.trapIsActive = elevator1Controller.trapIsActive;
                 data.elevator1 = elevator1State;
             }
-            //если объект - лифт 2
+            //РµСЃР»Рё РѕР±СЉРµРєС‚ - Р»РёС„С‚ 2
             else if (obj.TryGetComponent<Elevator2Controller>(out elevatorController)) {
                 ElevatorState elevatorState = new ElevatorState();
                 elevatorState.objectName = obj.name;
@@ -110,7 +110,7 @@ public class GameDataManager : MonoBehaviour
                 elevatorState.destFloor = elevatorController.GetDestFloor();
                 data.elevator2 = elevatorState;
             }
-            //если объект - npc, преследующий игрока
+            //РµСЃР»Рё РѕР±СЉРµРєС‚ - npc, РїСЂРµСЃР»РµРґСѓСЋС‰РёР№ РёРіСЂРѕРєР°
             else if (obj.TryGetComponent<ChaseController>(out chaseController))
             {
                 ChaserState chaserState = new ChaserState();
@@ -120,7 +120,7 @@ public class GameDataManager : MonoBehaviour
                 chaserState.targetName = (chaseController.target != null) ? chaseController.target.name : null;
                 data.chasers.Add(chaserState);
             }
-            //если объект разрушаемый
+            //РµСЃР»Рё РѕР±СЉРµРєС‚ СЂР°Р·СЂСѓС€Р°РµРјС‹Р№
             else if (obj.TryGetComponent<NPCHealth>(out npc))
             {
                 KillableState destructible = new();
@@ -128,7 +128,7 @@ public class GameDataManager : MonoBehaviour
                 destructible.alive = npc.getHP() > 0;
                 data.destructibles.Add(destructible);
             }
-            //если объект класса pickable
+            //РµСЃР»Рё РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° pickable
             else if (obj.TryGetComponent<Pickable>(out pickable))
             {
                 PickableState pickableState = new PickableState();
@@ -147,10 +147,10 @@ public class GameDataManager : MonoBehaviour
         string filePath = Application.persistentDataPath + SAVE_FILE_NAME;
         File.WriteAllText(filePath, jsonData);
 
-        Debug.Log("Данные сохранены");
+        Debug.Log("Р”Р°РЅРЅС‹Рµ СЃРѕС…СЂР°РЅРµРЅС‹");
     }
 
-    // Загрузка данных
+    // Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С…
     public GameData LoadGameData()
     {
         string filePath = Application.persistentDataPath + SAVE_FILE_NAME;
@@ -160,12 +160,12 @@ public class GameDataManager : MonoBehaviour
             string jsonData = File.ReadAllText(filePath);
             GameData data = JsonUtility.FromJson<GameData>(jsonData);
 
-            Debug.Log("Данные загружены");
+            Debug.Log("Р”Р°РЅРЅС‹Рµ Р·Р°РіСЂСѓР¶РµРЅС‹");
             return data;
         }
         else
         {
-            Debug.LogError("Файл сохранения не найден");
+            Debug.LogError("Р¤Р°Р№Р» СЃРѕС…СЂР°РЅРµРЅРёСЏ РЅРµ РЅР°Р№РґРµРЅ");
             return null;
         }
     }

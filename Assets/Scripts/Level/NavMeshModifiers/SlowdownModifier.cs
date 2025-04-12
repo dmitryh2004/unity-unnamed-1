@@ -14,22 +14,22 @@ public class SlowdownModifier : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Проверяем, является ли объект NavMeshAgent
+        // РџСЂРѕРІРµСЂСЏРµРј, СЏРІР»СЏРµС‚СЃСЏ Р»Рё РѕР±СЉРµРєС‚ NavMeshAgent
         NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
         if (agent != null)
         {
-            // Увеличиваем скорость агента
+            // РЈРІРµР»РёС‡РёРІР°РµРј СЃРєРѕСЂРѕСЃС‚СЊ Р°РіРµРЅС‚Р°
             agent.speed *= speedMultiplier;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Проверяем, является ли объект NavMeshAgent
+        // РџСЂРѕРІРµСЂСЏРµРј, СЏРІР»СЏРµС‚СЃСЏ Р»Рё РѕР±СЉРµРєС‚ NavMeshAgent
         NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
         if (agent != null)
         {
-            // Возвращаем исходную скорость агента
+            // Р’РѕР·РІСЂР°С‰Р°РµРј РёСЃС…РѕРґРЅСѓСЋ СЃРєРѕСЂРѕСЃС‚СЊ Р°РіРµРЅС‚Р°
             agent.speed /= speedMultiplier;
         }
     }

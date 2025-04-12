@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class HealthText : MonoBehaviour
 {
-    public Transform player; // Ссылка на скрипт здоровья игрока
+    public Transform player; // вЂ”СЃС‹Р»РєР° РЅР° СЃРєСЂРёРїС‚ Р·РґРѕСЂРѕРІСЊв‚¬ РёРіСЂРѕРєР°
     PlayerHealth playerHealth;
-    public TMP_Text healthText; // Ссылка на Text
+    public TMP_Text healthText; // вЂ”СЃС‹Р»РєР° РЅР° Text
 
     void Start()
     {
@@ -14,7 +14,7 @@ public class HealthText : MonoBehaviour
     }
     void Update()
     {
-        // Обновляем текст
+        // СњР±РЅРѕРІР»в‚¬РµРј С‚РµРєСЃС‚
         healthText.text = "HP: " + playerHealth.GetCurrentHealth() + " / " + playerHealth.maxHealth;
     }
 }

@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        // если зажата клавиша ctrl, то игрок двигается в 2 раза быстрее
+        // РµСЃР»Рё Р·Р°Р¶Р°С‚Р° РєР»Р°РІРёС€Р° ctrl, С‚Рѕ РёРіСЂРѕРє РґРІРёРіР°РµС‚СЃСЏ РІ 2 СЂР°Р·Р° Р±С‹СЃС‚СЂРµРµ
         if (Input.GetKey(KeyCode.LeftControl)) move *= 2;
 
         move += force;

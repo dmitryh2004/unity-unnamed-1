@@ -53,8 +53,8 @@ public class NPCHealth : MonoBehaviour
 
     IEnumerator DelayedDestroy(float delay)
     {
-        transform.GetChild(0).gameObject.SetActive(false); //скрываем модель
-        GetComponent<Collider>().enabled = false; //отключаем коллайдер
+        transform.GetChild(0).gameObject.SetActive(false); //СЃРєСЂС‹РІР°РµРј РјРѕРґРµР»СЊ
+        GetComponent<Collider>().enabled = false; //РѕС‚РєР»СЋС‡Р°РµРј РєРѕР»Р»Р°Р№РґРµСЂ
         yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
     }

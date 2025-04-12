@@ -10,10 +10,12 @@ public class RifleController : MonoBehaviour
     [SerializeField] Animator rifleAnimator;
     [SerializeField] float reloadTime = 2f;
     [SerializeField] float range = 10f;
+    PauseMenu pauseMenuHandler;
     bool reloading = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        pauseMenuHandler = GetComponent<PauseMenu>();
         inventory = GetComponent<Inventory>();
         audioPlayer = GetComponent<PlayerAudioPlayer>();
     }
@@ -21,37 +23,40 @@ public class RifleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!pauseMenuHandler.IsPaused())
         {
-            if (!reloading)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (inventory.GetAmmoCount() > 0)
+                if (!reloading)
                 {
-                    inventory.UseAmmo();
-                    audioPlayer.PlayShootSound();
-                    RaycastHit hit;
-                    if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
-                    {
-                        Debug.Log(hit.transform.gameObject.name);
-                        NPCHealth npc;
-                        if (hit.transform.TryGetComponent<NPCHealth>(out npc))
-                        {
-                            npc.TakeDamage(1);
-                        }
-                    }
                     if (inventory.GetAmmoCount() > 0)
                     {
-                        reloading = true;
-                        StartCoroutine(ReloadCoroutine());
+                        inventory.UseAmmo();
+                        audioPlayer.PlayShootSound();
+                        RaycastHit hit;
+                        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
+                        {
+                            Debug.Log(hit.transform.gameObject.name);
+                            NPCHealth npc;
+                            if (hit.transform.TryGetComponent<NPCHealth>(out npc))
+                            {
+                                npc.TakeDamage(1);
+                            }
+                        }
+                        if (inventory.GetAmmoCount() > 0)
+                        {
+                            reloading = true;
+                            StartCoroutine(ReloadCoroutine());
+                        }
+                    }
+                    else
+                    {
+                        audioPlayer.PlayShootNoAmmoSound();
                     }
                 }
-                else
-                {
-                    audioPlayer.PlayShootNoAmmoSound();
-                }
             }
+            rifleAnimator.SetBool("shoot", reloading);
         }
-        rifleAnimator.SetBool("shoot", reloading);
     }
 
     private void OnDrawGizmos()

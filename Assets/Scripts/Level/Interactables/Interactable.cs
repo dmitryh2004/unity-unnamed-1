@@ -33,7 +33,7 @@ public abstract class Interactable : MonoBehaviour
         RaycastHit hit;
         if (playerCamera == null)
         {
-            Debug.LogError("Камера не назначена");
+            Debug.LogError("РљР°РјРµСЂР° РЅРµ РЅР°Р·РЅР°С‡РµРЅР°");
             return false;
         }
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hit, interactRange))
