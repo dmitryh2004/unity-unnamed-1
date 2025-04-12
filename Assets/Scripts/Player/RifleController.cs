@@ -8,6 +8,7 @@ public class RifleController : MonoBehaviour
     Inventory inventory;
     [SerializeField] Camera playerCamera;
     [SerializeField] Animator rifleAnimator;
+    [SerializeField] ParticleSystem rifleParticleSystem;
     [SerializeField] float reloadTime = 2f;
     [SerializeField] float range = 10f;
     PauseMenu pauseMenuHandler;
@@ -33,6 +34,7 @@ public class RifleController : MonoBehaviour
                     {
                         inventory.UseAmmo();
                         audioPlayer.PlayShootSound();
+                        rifleParticleSystem.Play();
                         RaycastHit hit;
                         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
                         {
