@@ -3,9 +3,10 @@ using UnityEngine;
 public class Bullets : Pickable
 {
     [SerializeField] Inventory playerInventory;
+    [SerializeField] int ammoCount = 3;
     public override void OnPickup()
     {
-        playerInventory.AddAmmo(3);
+        playerInventory.AddAmmo(ammoCount);
         Destroy(interactText);
     }
 

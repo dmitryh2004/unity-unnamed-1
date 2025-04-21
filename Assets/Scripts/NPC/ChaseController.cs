@@ -5,7 +5,7 @@ public class ChaseController : MonoBehaviour
 {
     NavMeshAgent agent;
     [SerializeField] Animator anim;
-    public Transform target = null;
+    [SerializeField] Transform target = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +26,11 @@ public class ChaseController : MonoBehaviour
             if (agent.hasPath) agent.ResetPath();
         }
         anim.SetBool("moving", hasTarget() && !agent.isStopped);
+    }
+
+    public Transform GetTarget()
+    {
+        return target;
     }
 
     public bool hasTarget()

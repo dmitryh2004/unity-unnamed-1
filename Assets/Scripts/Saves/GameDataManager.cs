@@ -117,7 +117,7 @@ public class GameDataManager : MonoBehaviour
                 chaserState.objectName = obj.name;
                 chaserState.alive = obj.activeInHierarchy;
                 chaserState.health = obj.GetComponent<NPCHealth>().getHP();
-                chaserState.targetName = (chaseController.target != null) ? chaseController.target.name : null;
+                chaserState.targetName = (chaseController.GetTarget() != null) ? chaseController.GetTarget().name : null;
                 data.chasers.Add(chaserState);
             }
             //если объект разрушаемый

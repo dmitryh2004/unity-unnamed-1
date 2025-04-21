@@ -36,6 +36,12 @@ public class MainMenuController : MonoBehaviour
 
     void LoadSaveButton()
     {
+        StartCoroutine(LoadGame());
+    }
+
+    IEnumerator LoadGame()
+    {
+        yield return new WaitForSeconds(0.35f);
         SceneManager.LoadScene("Level");
     }
 
