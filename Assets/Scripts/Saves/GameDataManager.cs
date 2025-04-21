@@ -52,6 +52,7 @@ public class GameData
     public int checkpointNumber;
     public int playerHealth;
     public int playerAmmo;
+    public float elapsedTime;
     public List<ButtonState> buttons = new();
     public Elevator1State elevator1 = new();
     public ElevatorState elevator2 = new();
@@ -69,6 +70,7 @@ public class GameData
 
 public class GameDataManager : MonoBehaviour
 {
+    public Timer timer;
     public List<GameObject> objectsToSave = new List<GameObject>();
     private const string SAVE_FILE_NAME = "/game_data.json";
 
@@ -76,6 +78,7 @@ public class GameDataManager : MonoBehaviour
     public void SaveGameData(int floorNumber, int playerHealth, int playerAmmo)
     {
         GameData data = new GameData(floorNumber, playerHealth, playerAmmo);
+        data.elapsedTime = timer.GetElapsedTime();
         foreach(GameObject obj in objectsToSave)
         {
             BaseButton baseButtonComponent;

@@ -6,6 +6,7 @@ public class GameLoader : MonoBehaviour
 {
     public List<Transform> checkpoints;
     public Transform player;
+    public Timer timer;
 
     void Start()
     {
@@ -23,6 +24,9 @@ public class GameLoader : MonoBehaviour
             player.transform.position = checkpoints[checkpointNumber].position;
             player.GetComponent<PlayerHealth>().SetCurrentHealth(gamedata.playerHealth);
             player.GetComponent<Inventory>().SetAmmoCount(gamedata.playerAmmo);
+
+            timer.SetElapsedTime(gamedata.elapsedTime);
+            timer.StartTimer();
 
             if (gamedata.buttons.Count > 0)
             {

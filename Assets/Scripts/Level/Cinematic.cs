@@ -1,5 +1,6 @@
 using System.Collections;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ public class Cinematic : MonoBehaviour
     [SerializeField] GameObject blackScreenUI;
     [SerializeField] GameObject victoryCanvas;
     [SerializeField] Button menuButton;
+    [SerializeField] Timer timer;
+    [SerializeField] TMP_Text timerText;
 
     Animator blackScreenUIAnimator;
 
@@ -25,6 +28,7 @@ public class Cinematic : MonoBehaviour
 
     public void StartCinematic()
     {
+        timer.StopTimer(false);
         mainCamera.gameObject.SetActive(false);
         cinematicCamera.gameObject.SetActive(true);
 
@@ -53,8 +57,10 @@ public class Cinematic : MonoBehaviour
 
         yield return new WaitForSeconds(12f);
         blackScreenUIAnimator.SetTrigger("Activate");
+        
         yield return new WaitForSeconds(3f);
         victoryCanvas.SetActive(true);
+        timerText.SetText("Время забега: " + timer.GetText());
         Cursor.lockState = CursorLockMode.None;
 
         menuButton.onClick.AddListener(MainMenuButtonOnClick);
