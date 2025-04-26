@@ -94,9 +94,9 @@ public class PlayerHealth : MonoBehaviour
         {
             audioPlayer.PlayDeathSound();
         }
+        GetComponent<GameAmountCounter>().CountGame();
         UICanvas.SetActive(false);
         gameOverCanvas.SetActive(true);
-        Time.timeScale = 0; // Остановка времени для паузы
         Cursor.lockState = CursorLockMode.None;
     }
 

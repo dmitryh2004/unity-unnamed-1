@@ -30,11 +30,14 @@ public class ClashRoyaleController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         Vector3 playerPos = player.position, selfPos = transform.position;
-        if (Vector3.Distance(playerPos, selfPos) < 3.5f)
+        if (playerHealth.GetCurrentHealth() > 0)
         {
-            animator.SetTrigger("attackTrigger");
-            playerHealth.TakeDamage(15, gameObject);
+            if (Vector3.Distance(playerPos, selfPos) < 3.5f)
+            {
+                animator.SetTrigger("attackTrigger");
+                playerHealth.TakeDamage(15, gameObject);
+            }
+            StartCoroutine(Attack());
         }
-        StartCoroutine(Attack());
     }
 }

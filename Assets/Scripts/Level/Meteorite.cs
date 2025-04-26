@@ -19,7 +19,10 @@ public class Meteorite : MonoBehaviour
             }
             else if (collision.collider.TryGetComponent<PlayerHealth>(out playerHealth))
             {
-                playerHealth.TakeDamage(Random.Range(50, 110), gameObject);
+                if (playerHealth.GetCurrentHealth() > 0)
+                {
+                    playerHealth.TakeDamage(Random.Range(50, 110), gameObject);
+                }
             }
         }
     }

@@ -20,8 +20,11 @@ public class RedSphereController : MonoBehaviour
     {
         if (collision.collider.gameObject == player.gameObject)
         {
-            playerHealth.TakeDamage(50, gameObject);
-            GetComponent<NPCHealth>().TakeDamage(100);
+            if (playerHealth.GetCurrentHealth() > 0)
+            {
+                playerHealth.TakeDamage(50, gameObject);
+                GetComponent<NPCHealth>().TakeDamage(100);
+            }
         }
     }
 }

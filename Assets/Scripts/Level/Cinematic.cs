@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Cinematic : MonoBehaviour
 {
+    [SerializeField] GameAmountCounter gac;
     [SerializeField] Camera mainCamera, cinematicCamera;
     [SerializeField] Transform player;
     [SerializeField] GameObject inventoryCanvas;
@@ -20,6 +21,14 @@ public class Cinematic : MonoBehaviour
     [SerializeField] TMP_Text timerText;
 
     Animator blackScreenUIAnimator;
+
+    Coroutine cinematicCoroutine;
+
+    public void StopCinematic()
+    {
+        bgMusicSource.Stop();
+        StopCoroutine(cinematicCoroutine);
+    }
 
     private void Start()
     {
@@ -39,7 +48,7 @@ public class Cinematic : MonoBehaviour
         bgMusicSource.clip = outroMusicClip;
         bgMusicSource.Play();
 
-        StartCoroutine(PlayCinematic());
+        cinematicCoroutine = StartCoroutine(PlayCinematic());
     }
 
     IEnumerator PlayCinematic()
@@ -59,6 +68,9 @@ public class Cinematic : MonoBehaviour
         blackScreenUIAnimator.SetTrigger("Activate");
         
         yield return new WaitForSeconds(3f);
+
+        gac.CountGame();
+
         victoryCanvas.SetActive(true);
         timerText.SetText("Время забега: " + timer.GetText());
         Cursor.lockState = CursorLockMode.None;
