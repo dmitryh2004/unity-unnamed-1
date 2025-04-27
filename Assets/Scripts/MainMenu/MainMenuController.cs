@@ -10,6 +10,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject mainFragment;
     [SerializeField] GameObject creditsFragment;
     [SerializeField] GameObject achievementsFragment;
+    [SerializeField] MainMenuAchievements mainMenuAchievements;
     [SerializeField] List<AchievementSlotController> achievementControllers = new List<AchievementSlotController>();
     [SerializeField] Button newGameButton;
     [SerializeField] Button loadSaveButton;
@@ -67,6 +68,7 @@ public class MainMenuController : MonoBehaviour
 
     void AchievementsButton()
     {
+        mainMenuAchievements.AddAchButtonPressed();
         mainFragment.SetActive(false);
         achievementsFragment.SetActive(true);
         foreach (AchievementSlotController asc in achievementControllers)
@@ -84,6 +86,14 @@ public class MainMenuController : MonoBehaviour
     void ExitButton()
     {
         StartCoroutine(ExitApplication());
+    }
+
+    public void ForceUpdateAchievements()
+    {
+        foreach (AchievementSlotController asc in achievementControllers)
+        {
+            asc.UpdateAchievement();
+        }
     }
 
     IEnumerator ExitApplication()

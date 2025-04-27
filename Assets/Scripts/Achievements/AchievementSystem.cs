@@ -57,9 +57,17 @@ public class AchievementSystem : MonoBehaviour
     {
         string filePath = Application.persistentDataPath + achievementFileLocation;
 
+        achievements = new List<Achievement>();
         foreach (Achievement a in achievementTemplates)
         {
-            achievements.Add(a);
+            Achievement ach = new Achievement();
+            ach.achieved = a.achieved;
+            ach.currentValue = a.currentValue;
+            ach.targetValue = a.targetValue;
+            ach.id = a.id;
+            ach.title = a.title;
+            ach.desc = a.desc;
+            achievements.Add(ach);
         }
 
         if (File.Exists(filePath))
@@ -126,6 +134,13 @@ public class AchievementSystem : MonoBehaviour
         }
 
         achievementQueues[minQueueIndex].Add(achId);
+    }
+
+    public void ClearAchievements()
+    {
+        string path = Application.persistentDataPath + "/achievements.json";
+        if (File.Exists(path)) File.Delete(path);
+        LoadAchievements();
     }
 
     IEnumerator CheckQueueCoroutine()

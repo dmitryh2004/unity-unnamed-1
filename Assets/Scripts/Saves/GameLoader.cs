@@ -7,6 +7,7 @@ public class GameLoader : MonoBehaviour
     public List<Transform> checkpoints;
     public Transform player;
     public Timer timer;
+    public KillCounter killCounter;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class GameLoader : MonoBehaviour
 
             timer.SetElapsedTime(gamedata.elapsedTime);
             timer.StartTimer();
+
+            killCounter.SetKilled(gamedata.killedByPlayer, gamedata.totalKilled);
 
             if (gamedata.buttons.Count > 0)
             {

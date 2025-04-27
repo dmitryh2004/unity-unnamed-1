@@ -16,15 +16,10 @@ public class AchievementSlotController : MonoBehaviour
     Color inProgress = new Color(0f, .95f, .95f);
     Color completed = new Color(0f, .95f, 0f);
 
-    float x, y, maxWidth, height;
+    [SerializeField] float maxWidth, height;
 
     public void UpdateAchievement()
     {
-        maxWidth = AchievementProgressBar.rectTransform.rect.width;
-        x = AchievementProgressBar.rectTransform.rect.x;
-        y = AchievementProgressBar.rectTransform.rect.y;
-        height = AchievementProgressBar.rectTransform.rect.height;
-
         Achievement ach = _as.FindAchievementById(achId);
 
         AchievementImage.sprite = ach.icon;

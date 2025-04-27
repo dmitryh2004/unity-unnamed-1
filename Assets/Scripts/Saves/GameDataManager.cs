@@ -53,6 +53,8 @@ public class GameData
     public int playerHealth;
     public int playerAmmo;
     public float elapsedTime;
+    public int killedByPlayer;
+    public int totalKilled;
     public List<ButtonState> buttons = new();
     public Elevator1State elevator1 = new();
     public ElevatorState elevator2 = new();
@@ -71,6 +73,7 @@ public class GameData
 public class GameDataManager : MonoBehaviour
 {
     public Timer timer;
+    public KillCounter killCounter;
     public List<GameObject> objectsToSave = new List<GameObject>();
     private const string SAVE_FILE_NAME = "/game_data.json";
 
@@ -79,6 +82,8 @@ public class GameDataManager : MonoBehaviour
     {
         GameData data = new GameData(floorNumber, playerHealth, playerAmmo);
         data.elapsedTime = timer.GetElapsedTime();
+        data.killedByPlayer = killCounter.GetKilledByPlayer();
+        data.totalKilled = killCounter.GetTotalKilled();
         foreach(GameObject obj in objectsToSave)
         {
             BaseButton baseButtonComponent;

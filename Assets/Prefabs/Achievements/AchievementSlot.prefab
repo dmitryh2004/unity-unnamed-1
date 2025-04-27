@@ -195,6 +195,8 @@ MonoBehaviour:
   AchievementDesc: {fileID: 7170652540841895252}
   AchievementProgress: {fileID: 1330391315457278}
   AchievementProgressBar: {fileID: 8747715555765887705}
+  maxWidth: 96
+  height: 16
 --- !u!1 &4253806311005405574
 GameObject:
   m_ObjectHideFlags: 0

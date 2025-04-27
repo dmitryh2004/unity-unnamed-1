@@ -44,7 +44,7 @@ public class Timer : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
         }
-        
-        timerText.SetText(GetText());
+        if (timerText != null)
+            timerText.SetText(GetText());
     }
 }
