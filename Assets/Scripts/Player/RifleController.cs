@@ -42,7 +42,7 @@ public class RifleController : MonoBehaviour
                             NPCHealth npc;
                             if (hit.transform.TryGetComponent<NPCHealth>(out npc))
                             {
-                                npc.TakeDamage(1);
+                                npc.TakeDamage(1, gameObject);
                             }
                         }
                         if (inventory.GetAmmoCount() > 0)

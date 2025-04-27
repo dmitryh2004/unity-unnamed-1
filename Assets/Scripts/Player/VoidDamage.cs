@@ -21,7 +21,7 @@ public class VoidDamage : MonoBehaviour
 
     void CheckForPlayerIsInVoid()
     {
-        if (player.position.y < -10)
+        if ((player.position.y < -10) && (playerHealth.GetCurrentHealth() > 0))
         {
             playerHealth.TakeDamage(20, null);
         }

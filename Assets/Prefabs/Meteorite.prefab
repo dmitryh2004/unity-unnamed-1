@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9158406107524596785}
-  - component: {fileID: 7680843492511502489}
-  - component: {fileID: 6431652783411196247}
+  - component: {fileID: 3403986493327502524}
+  - component: {fileID: 5664746684028651602}
   m_Layer: 0
   m_Name: Meteorite
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 8897073238608377973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7680843492511502489
+--- !u!114 &3403986493327502524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain: {fileID: 0}
---- !u!54 &6431652783411196247
+--- !u!54 &5664746684028651602
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

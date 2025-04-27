@@ -41,7 +41,7 @@ public class AchievementSystem : MonoBehaviour
         StartCoroutine(CheckQueueCoroutine());
     }
 
-    private Achievement FindAchievementById(AchievementNames id)
+    public Achievement FindAchievementById(AchievementNames id)
     {
         foreach (Achievement a in achievements)
         {
@@ -108,8 +108,8 @@ public class AchievementSystem : MonoBehaviour
                 a.achieved = true;
                 LaunchAchieve(achId);
             }
+            SaveAchievements();
         }
-        SaveAchievements();
     }
 
     public void LaunchAchieve(AchievementNames achId)

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class NPCHealth : MonoBehaviour
 {
+    [SerializeField] bool countKill = false;
+    [SerializeField] KillCounter killCounter;
     [SerializeField] int health = 1;
     public int getHP()
     {
@@ -13,7 +15,7 @@ public class NPCHealth : MonoBehaviour
     {
         health = hp;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject dealer)
     {
         health -= damage;
 
@@ -29,6 +31,10 @@ public class NPCHealth : MonoBehaviour
             if (TryGetComponent<ClashRoyaleController>(out clashRoyaleController))
             {
                 clashRoyaleController.StopAllCoroutines();
+            }
+            if (countKill)
+            {
+                killCounter.Kill(dealer.CompareTag("Player"));
             }
 
             float deathAudioLength = 0f;

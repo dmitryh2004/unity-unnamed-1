@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,10 +9,14 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] GameObject mainFragment;
     [SerializeField] GameObject creditsFragment;
+    [SerializeField] GameObject achievementsFragment;
+    [SerializeField] List<AchievementSlotController> achievementControllers = new List<AchievementSlotController>();
     [SerializeField] Button newGameButton;
     [SerializeField] Button loadSaveButton;
     [SerializeField] Button creditsButton;
-    [SerializeField] Button backButton;
+    [SerializeField] Button achievementsButton;
+    [SerializeField] Button creditsBackButton;
+    [SerializeField] Button achievementsBackButton;
     [SerializeField] Button exitButton;
     void Start()
     {
@@ -20,11 +25,14 @@ public class MainMenuController : MonoBehaviour
         newGameButton.onClick.AddListener(NewGameButton);
         loadSaveButton.onClick.AddListener(LoadSaveButton);
         creditsButton.onClick.AddListener(CreditsButton);
-        backButton.onClick.AddListener(BackButton);
+        creditsBackButton.onClick.AddListener(CreditsBackButton);
+        achievementsButton.onClick.AddListener(AchievementsButton);
+        achievementsBackButton.onClick.AddListener(AchievementsBackButton);
         exitButton.onClick.AddListener(ExitButton);
 
         mainFragment.SetActive(true);
         creditsFragment.SetActive(false);
+        achievementsFragment.SetActive(false);
     }
 
     void NewGameButton()
@@ -51,10 +59,26 @@ public class MainMenuController : MonoBehaviour
         creditsFragment.SetActive(true);
     }
 
-    void BackButton()
+    void CreditsBackButton()
     {
         mainFragment.SetActive(true);
         creditsFragment.SetActive(false);
+    }
+
+    void AchievementsButton()
+    {
+        mainFragment.SetActive(false);
+        achievementsFragment.SetActive(true);
+        foreach (AchievementSlotController asc in achievementControllers)
+        {
+            asc.UpdateAchievement();
+        }
+    }
+
+    void AchievementsBackButton()
+    {
+        mainFragment.SetActive(true);
+        achievementsFragment.SetActive(false);
     }
 
     void ExitButton()

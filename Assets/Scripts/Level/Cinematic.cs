@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Cinematic : MonoBehaviour
 {
+    [SerializeField] AchievementSystem _as;
+    [SerializeField] KillCounter killCounter;
     [SerializeField] GameAmountCounter gac;
     [SerializeField] Camera mainCamera, cinematicCamera;
     [SerializeField] Transform player;
@@ -70,6 +72,19 @@ public class Cinematic : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         gac.CountGame();
+        gac.CountPassedGame();
+
+        if (killCounter.GetKilledByPlayer() == 0) _as.AddProgress(AchievementNames.Pacifist, 1);
+        if (killCounter.AreAllKilled()) _as.AddProgress(AchievementNames.Doomguy, 1);
+
+        string path = Application.persistentDataPath + "/game_data.json";
+        if (!File.Exists(path)) _as.AddProgress(AchievementNames.Hardcorer, 1);
+
+        float elapsedTime = timer.GetElapsedTime();
+        if (elapsedTime <= 180f) _as.AddProgress(AchievementNames.SpeedrunMaster1, 1);
+        if (elapsedTime <= 165f) _as.AddProgress(AchievementNames.SpeedrunMaster2, 1);
+        if (elapsedTime <= 150f) _as.AddProgress(AchievementNames.SpeedrunMaster3, 1);
+        if (elapsedTime <= 140f) _as.AddProgress(AchievementNames.SpeedrunMaster4, 1);
 
         victoryCanvas.SetActive(true);
         timerText.SetText("Время забега: " + timer.GetText());

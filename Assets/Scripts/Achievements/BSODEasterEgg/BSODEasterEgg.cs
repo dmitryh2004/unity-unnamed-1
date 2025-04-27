@@ -1,10 +1,11 @@
 using UnityEngine;
-using Unity.IO;
+using System.IO;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class BSODEasterEgg : MonoBehaviour
 {
+    [SerializeField] AchievementSystem _as;
     [SerializeField] Cinematic cinematic;
     [SerializeField] Canvas BSODCanvas;
     [SerializeField] AudioSource windowsErrorSound;
@@ -25,12 +26,13 @@ public class BSODEasterEgg : MonoBehaviour
         BSODCanvas.gameObject.SetActive(true);
         windowsErrorSound.PlayOneShot(windowsErrorSound.clip);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
 
         Cursor.lockState = CursorLockMode.None;
+        _as.AddProgress(AchievementNames.EasterEgg3, 1);
 
-        //string path = Application.persistentDataPath + "/game_data.json";
-        //if (File.Exists(path)) File.Delete(path);
+        string path = Application.persistentDataPath + "/game_data.json";
+        if (File.Exists(path)) File.Delete(path);
         SceneManager.LoadScene("MainMenu");
     }
 }
