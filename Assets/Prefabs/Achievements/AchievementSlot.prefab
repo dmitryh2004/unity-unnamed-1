@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _as: {fileID: 0}
   achId: 0
+  unknown: {fileID: 21300000, guid: 45ae36703b7742249897a005c8392e20, type: 3}
   AchievementImage: {fileID: 8428896017301194006}
   AchievementTitle: {fileID: 8355536548835484296}
   AchievementDesc: {fileID: 7170652540841895252}
@@ -262,7 +263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f8445b8d7edfb6e44b416d552b0d056c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

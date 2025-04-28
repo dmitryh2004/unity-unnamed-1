@@ -67,6 +67,7 @@ public class AchievementSystem : MonoBehaviour
             ach.id = a.id;
             ach.title = a.title;
             ach.desc = a.desc;
+            ach.icon = a.icon;
             achievements.Add(ach);
         }
 

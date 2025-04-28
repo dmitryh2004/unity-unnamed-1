@@ -34,6 +34,7 @@ public class AchievementController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         animator.SetTrigger("Hide");
+        yield return new WaitForSeconds(2f);
         currentlyUsed = false;
     }
 }

@@ -7,6 +7,7 @@ public class AchievementSlotController : MonoBehaviour
     [SerializeField] AchievementSystem _as;
     [SerializeField] AchievementNames achId;
 
+    [SerializeField] Sprite unknown;
     [SerializeField] Image AchievementImage;
     [SerializeField] TMP_Text AchievementTitle;
     [SerializeField] TMP_Text AchievementDesc;
@@ -22,7 +23,10 @@ public class AchievementSlotController : MonoBehaviour
     {
         Achievement ach = _as.FindAchievementById(achId);
 
-        AchievementImage.sprite = ach.icon;
+        if (ach.achieved)
+            AchievementImage.sprite = ach.icon;
+        else
+            AchievementImage.sprite = unknown;
         AchievementTitle.text = ach.title;
         AchievementDesc.text = ach.desc;
 

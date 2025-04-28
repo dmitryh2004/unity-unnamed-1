@@ -13,7 +13,7 @@ public class BSODEasterEgg : MonoBehaviour
 
     private void Update()
     {
-        if (!launched && Input.GetKeyDown(KeyCode.B))
+        if (!launched && !cinematic.IsEndOfCinematic() && Input.GetKeyDown(KeyCode.B))
         {
             launched = true;
             cinematic.StopCinematic();

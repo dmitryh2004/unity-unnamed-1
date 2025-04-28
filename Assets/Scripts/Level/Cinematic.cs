@@ -26,10 +26,17 @@ public class Cinematic : MonoBehaviour
 
     Coroutine cinematicCoroutine;
 
+    bool endOfCinematic = false;
+
     public void StopCinematic()
     {
         bgMusicSource.Stop();
         StopCoroutine(cinematicCoroutine);
+    }
+
+    public bool IsEndOfCinematic()
+    {
+        return endOfCinematic;
     }
 
     private void Start()
@@ -71,6 +78,7 @@ public class Cinematic : MonoBehaviour
         
         yield return new WaitForSeconds(3f);
 
+        endOfCinematic = true;
         gac.CountGame();
         gac.CountPassedGame();
 
