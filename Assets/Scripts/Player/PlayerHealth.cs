@@ -81,6 +81,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = hp;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
+        UpdateInterfaceBorder();
     }
 
     private void GameOver(GameObject dealer)

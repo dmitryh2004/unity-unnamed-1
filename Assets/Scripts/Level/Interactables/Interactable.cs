@@ -22,10 +22,7 @@ public abstract class Interactable : MonoBehaviour
     protected abstract bool CheckConditionForUpdateHint();
     void UpdateHint()
     {
-        if (CheckConditionForUpdateHint())
-        {
-            interactText.SetActive(CameraIsLookingOnObject());
-        }
+        interactText.SetActive(CameraIsLookingOnObject() && CheckConditionForUpdateHint());
     }
 
     bool CameraIsLookingOnObject()

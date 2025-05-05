@@ -20,7 +20,8 @@ public enum AchievementNames
     Hardcorer = 12,
     EasterEgg1 = 13,
     EasterEgg2 = 14,
-    EasterEgg3 = 15
+    EasterEgg3 = 15,
+    EasterEgg4 = 16
 }
 
 public class AchievementSystem : MonoBehaviour

@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+    bool running = false;
     bool moving = false;
     bool grounded;
     Vector3 velocity;
@@ -30,6 +31,11 @@ public class Movement : MonoBehaviour
         force += newForce;
     }
 
+    public bool isRunning()
+    {
+        return running;
+    }
+
     void DampForce()
     {
         Vector3 damping = 2 * Time.deltaTime * force;
@@ -47,6 +53,7 @@ public class Movement : MonoBehaviour
 
         // если зажата клавиша ctrl, то игрок двигается в 2 раза быстрее
         if (Input.GetKey(KeyCode.LeftControl)) move *= 2;
+        running = Input.GetKey(KeyCode.LeftControl);
 
         move += force;
         characterController.Move(move * speed * Time.deltaTime);
